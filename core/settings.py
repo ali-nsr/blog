@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'contact_us.apps.ContactUsConfig',
     'slider.apps.SliderConfig',
     'site_settings.apps.SiteSettingsConfig',
-    'blog_tag.apps.BlogTagConfig',
     'extensions',
     'widget_tweaks',
     'crispy_forms',
