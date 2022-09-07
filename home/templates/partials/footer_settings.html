@@ -1,0 +1,173 @@
+{% load static %}
+{% load thumbnail %}
+<div class="footer-area-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="footer-box">
+                                    <h2 class="title-bold-light title-bar-left text-uppercase">مطالب پربازدید</h2>
+                                    <ul class="most-view-post">
+                                        {% for article in most_visited_articles_in_last_month %}
+                                        <li>
+                                            <div class="media">
+                                                <a href="post-style-1.html">
+                                                    {% thumbnail article.image "100x80" crop="center" as img %}
+                                                        <img src="{{ img.url }}" alt="{{ article.image_alt }}" class="img-fluid">
+                                                    {% endthumbnail %}
+                                                </a>
+                                                <div class="media-body">
+                                                    <h3 class="title-medium-light size-md mb-10">
+                                                        <a href="#">{{ article.title }}</a>
+                                                    </h3>
+                                                    <div class="post-date-light">
+                                                        <ul>
+                                                            <li>
+                                                                <span>
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </span>11 خرداد 1398</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                                <div class="footer-box">
+                                    <h2 class="title-bold-light title-bar-left text-uppercase">دسته بندی ها</h2>
+                                    <ul class="popular-categories">
+                                        {% for category in categories %}
+                                        <li>
+                                            <a href="{% url 'blog:category_list' category.slug %}">{{ category }}
+                                                <span></span>
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% comment %} <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12">
+                                <div class="footer-box">
+                                    <h2 class="title-bold-light title-bar-left text-uppercase">گالری مطالب</h2>
+                                    <ul class="post-gallery shine-hover ">
+                                        <li>
+                                            <a href="gallery-style-1.html">
+                                                <figure>
+                                                    <img src="img/footer/post4.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-2.html">
+                                                <figure>
+                                                    <img src="img/footer/post5.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-1.html">
+                                                <figure>
+                                                    <img src="img/footer/post6.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-2.html">
+                                                <figure>
+                                                    <img src="img/footer/post7.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-1.html">
+                                                <figure>
+                                                    <img src="img/footer/post8.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-2.html">
+                                                <figure>
+                                                    <img src="img/footer/post9.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-1.html">
+                                                <figure>
+                                                    <img src="img/footer/post10.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-2.html">
+                                                <figure>
+                                                    <img src="img/footer/post11.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="gallery-style-1.html">
+                                                <figure>
+                                                    <img src="img/footer/post12.jpg" alt="post" class="img-fluid">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-area-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{% url 'signalsafar:home' %}" class="footer-logo text-center img-fluid">
+
+                                    <img src="{{ site_settings.footer_logo.url }}" alt="logo" class="img-fluid">
+                                </a>
+                                <ul class="footer-social">
+                                    <li>
+                                        <a href="#" title="facebook">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="twitter">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="google-plus">
+                                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="linkedin">
+                                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="pinterest">
+                                            <i class="fa fa-telegram" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="rss">
+                                            <i class="fa fa-rss" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="vimeo">
+                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <p>تمامی حقوق مادی و معنوی این سایت متعلق به <a href="{% url 'signalsafar:home' %}">سیگنال سفر</a> می باشد و هرگونه کپی برداری غیرقانونی محسوب خواهد شد</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>

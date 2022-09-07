@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load comment_tags %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<!-- News Info List Area End Here -->
+<!-- Inner Page Banner Area Start Here -->
+<section class="inner-page-banner img-overlay-90">
+    <img src="{{ article.image.url }}" alt="{{ article.image_alt }}" class="img-fluid">
+    <div class="container">
+        <div class="banner-content">
+            <div class="topic-box-sm color-cinnabar mb-30 hidden-sm hidden-xs">{{ article.category.last }}</div>
+            <div class="inner-banner-title">{{ article.title }}</div>
+            <ul class="post-info-light hidden-sm hidden-xs">
+                <li>
+                    <a href="{% url 'blog:author' article.author.username %}">
+                        <span>توسط</span> {{ article.author.get_full_name }}</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>{{ article.jpublish }}</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-eye" aria-hidden="true"></i>{{ article.hits.count }}</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comments" aria-hidden="true"></i>{{ article.comments.count }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Inner Page Banner Area End Here -->
+<!-- Breadcrumb Area Start Here -->
+<!-- Breadcrumb Area End Here -->
+<!-- News Details Page Area Start Here -->
+<section class="bg-body section-space-less30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="news-details-layout3 mb-30">
+                    {{ article.description|safe }}
+                    <ul class="blog-tags item-inline">
+                        <li>دسته بندی ها</li>
+                        {% for category in article.category.all %}
+                        <li>
+                            <a href="{% url 'blog:category_list' category.slug %}">{{ category.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="row no-gutters divider blog-post-slider">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                            {% if article.get_previous_by_created %}
+                                    <a href="{% url 'blog:detail' article.get_previous_by_created.id article.get_previous_by_created.slug %}"
+                                       class="prev-article">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>پست قبلی</a>
+                                {% endif %}
+                                <h3 class="title-medium-dark pr-50">
+                                    {% if article.get_previous_by_created %}
+                                        {{ article.get_previous_by_created.title }}
+                                    {% else %}
+                                        <p class="text-warning">مقاله ای برای نمایش وجود ندارد</p>
+                                    {% endif %}
+                                </h3>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-left">
+                            {% if article.get_next_by_created %}
+                                    <a href="{% url 'blog:detail' article.get_next_by_created.id article.get_next_by_created.slug %}"
+                                       class="prev-article">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>پست بعدی</a>
+                                {% endif %}
+                                <h3 class="title-medium-dark pr-50">
+                                    {% if article.get_next_by_created %}
+                                        {{ article.get_next_by_created.title }}
+                                    {% else %}
+                                        <p class="text-warning">مقاله ای برای نمایش وجود ندارد</p>
+                                    {% endif %}
+                                </h3>
+                        </div>
+                    </div>
+
+                    <div>
+                        {% if request.user.is_authenticated %}
+                        {% render_comments article request %}
+                        {% else %}
+                            <div class="bg-warning p-35-r mb-50">
+                                <p>برای ثبت نظر یا مشاهده نظرات به حساب کاربری خود <a href="{% url 'login' %}">ورود</a> کنید</p>
+                                <p>اگر حسابی ندارید از این لینک <a href="{% url 'register' %}">ثبت نام</a> کنید</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+
+                {% include 'blog/last_news_component.html' %}
+                <div class="sidebar-box">
+                    <div class="topic-border color-cod-gray mb-25">
+                        <div class="topic-box-lg color-cod-gray">برچسب ها</div>
+                    </div>
+                    <ul class="sidebar-tags">
+                        {% for tag in article.tags.all %}
+                        <li>
+                            <a href="{% url 'blog:tag_list' tag.slug %}">{{ tag.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- News Details Page Area End Here -->
+
+{% endblock %}

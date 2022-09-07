@@ -1,0 +1,347 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block content %}
+<section class="section-space-bottom">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-xl-8 col-lg-12">
+                {% for slider in sliders %}
+                <div class="main-slider1 img-overlay-slider">
+
+                    <div class="bend niceties preview-1">
+
+                        <div id="ensign-nivoslider-3" class="slides">
+                            {% thumbnail slider.slider_1.image "800x490" crop="center" as img %}
+                                <img src="{{ img.url }}" alt="{{ slider.slider_1.image_alt }}" title="#slider-direction-1">
+                            {% endthumbnail %}
+                            {% thumbnail slider.slider_2.image "800x490" crop="center" as img %}
+                                <img src="{{ img.url }}" alt="{{ slider.slider_2.image_alt }}" title="#slider-direction-1">
+                            {% endthumbnail %}
+                            {% thumbnail slider.slider_3.image "800x490" crop="center" as img %}
+                                <img src="{{ img.url }}" alt="{{ slider.slider_3.image_alt }}" title="#slider-direction-1">
+                            {% endthumbnail %}
+
+                        </div>
+                        <!-- direction 1 -->
+                        <div id="slider-direction-1" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-1">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-right pl-50 pl20-xs">
+                                        <div class="topic-box-sm color-cinnabar mb-20">{{ slider.slider_1.category.last }}
+                                        </div>
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>توسط</span>
+                                                    <a href="{% url 'blog:author' slider.slider_1.author.username %}">{{ slider.slider_1.author.get_full_name }}</a>
+                                                </li>
+                                                <li>
+                                                                <span>
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </span>{{ slider.slider_1.jpublish }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="{{ slider.slider_1.get_absolute_url }}">
+                                            <div class="slider-title">{{ slider.slider_1.title }}</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- direction 2 -->
+                        <div id="slider-direction-2" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-2">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-right pl-50 pl20-xs">
+                                        <div class="topic-box-sm color-cinnabar mb-20">{{ slider.slider_2.category.last }}
+                                        </div>
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>توسط</span>
+                                                    <a href="">{{ slider.slider_2.author.get_full_name }}</a>
+                                                </li>
+                                                <li>
+                                                                <span>
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </span>{{ slider.slider_2.jpublish }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="{{ slider.slider_2.get_absolute_url }}">
+                                            <div class="slider-title">{{ slider.slider_2.title }}</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- direction 3 -->
+                        <div id="slider-direction-3" class="t-cn slider-direction">
+                            <div class="slider-content s-tb slide-3">
+                                <div class="title-container s-tb-c">
+                                    <div class="text-right pl-50 pl20-xs">
+                                        <div class="topic-box-sm color-cinnabar mb-20">{{ slider.slider_3.category.last
+                                            }}
+                                        </div>
+                                        <div class="post-date-light d-none d-sm-block">
+                                            <ul>
+                                                <li>
+                                                    <span>توسط</span>
+                                                    <a href="">{{ slider.slider_3.author.get_full_name }}</a>
+                                                </li>
+                                                <li>
+                                                                <span>
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </span>{{ slider.slider_3.jpublish }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="{{ slider.slider_2.get_absolute_url }}">
+                                            <div class="slider-title">{{ slider.slider_3.title }}</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-xl-4 col-lg-12">
+                <div class="item-box-light-md-less30 ie-full-width">
+                    <div class="row">
+                        {% for news in last_news %}
+                        <div class="media mb-25 col-xl-12 col-lg-6 col-md-6 col-sm-12">
+                            <a class="img-opacity-hover" href="{{ news.get_absolute_url }}">
+                                {% thumbnail news.image "120x80" crop="center" as img %}
+                                    <img src="{{ img.url }}" alt="{{ news.image_alt }}" class="img-fluid">
+                                {% endthumbnail %}
+                            </a>
+                            <div class="media-body media-padding5">
+                                <div class="post-date-dark">
+                                    <ul>
+                                        <li>
+                                                        <span>
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </span>22 اردیبهشت 1398
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                                </h3>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-space-bottom">
+    <!-- Popular Area End Here -->
+    <!-- Latest Articles Area Start Here -->
+    <section class="section-space-bottom-less30">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-12 mb-30">
+                    <div class="item-box-light-md-less30 ie-full-width">
+                        <div class="topic-border color-cinnabar mb-30">
+                            <div class="topic-box-lg color-cinnabar">مقالات</div>
+                        </div>
+                        <div class="row">
+                            {% for article in articles %}
+                            <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="media media-none--md mb-30">
+                                    <div class="position-relative width-40">
+                                        <a href="{{ article.get_absolute_url }}" class="img-opacity-hover">
+                                            {% thumbnail article.image "290x170" crop="center" as img %}
+                                                <img src="{{ img.url }}" alt="{{ article.image_alt }}" class="img-fluid">
+                                            {% endthumbnail %}
+                                        </a>
+                                        <div class="topic-box-top-xs">
+                                            <div class="topic-box-sm color-cod-gray mb-20">{{ article.category.last }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body p-mb-none-child media-margin30">
+                                        <div class="post-date-dark">
+                                            <ul>
+                                                <li>
+                                                    <span>توسط</span>
+                                                    <a href="single-news-1.html">{{ article.author.get_full_name }}</a>
+                                                </li>
+                                                <li>
+                                                            <span>
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </span>{{ article.jpublish }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-semibold-dark size-lg mb-15">
+                                            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                                        </h3>
+                                        <p>{{ article.description|truncatewords:20|safe }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="ne-sidebar sidebar-break-lg col-xl-4 col-lg-12">
+                    <div class="sidebar-box item-box-light-md">
+                        <div class="topic-border color-cinnabar mb-30">
+                            <div class="topic-box-lg color-cinnabar">در ارتباط باشید</div>
+                        </div>
+                        <ul class="stay-connected-color overflow-hidden">
+                            <li class="facebook">
+                                <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    <div class="connection-quantity">50.2 k</div>
+                                    <p>طرفدار</p>
+                                </a>
+                            </li>
+                            <li class="twitter">
+                                <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    <div class="connection-quantity">10.3 k</div>
+                                    <p>دنبال کننده</p>
+                                </a>
+                            </li>
+                            <li class="linkedin">
+                                <a href="#">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    <div class="connection-quantity">25.4 k</div>
+                                    <p>طرفدار</p>
+                                </a>
+                            </li>
+                            <li class="rss">
+                                <a href="#">
+                                    <i class="fa fa-rss" aria-hidden="true"></i>
+                                    <div class="connection-quantity">20.8 k</div>
+                                    <p>مشترک</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-box item-box-light-md-less30 ie-full-width">
+                        <ul class="btn-tab item-inline block-xs nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a href="#recent" data-toggle="tab" aria-expanded="true" class="active text-center">پربازدید های یک
+                                    ماه اخیر</a>
+                            </li>
+
+<!--                            <li class="nav-item">-->
+<!--                                <a href="#popular" data-toggle="tab" aria-expanded="false">محبوب</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a href="#common" data-toggle="tab" aria-expanded="false">متداول</a>-->
+<!--                            </li>-->
+
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active show" id="recent">
+                                <div class="row">
+                                    {% for article in most_visited_articles_in_last_month %}
+                                    <div class="col-xl-6 col-lg-4 col-md-4 col-sm-6 col-6 mb-25">
+                                        <div class="position-relative">
+                                            <div class="topic-box-top-xs">
+                                                <div class="topic-box-sm color-cod-gray mb-20">غذا</div>
+                                            </div>
+                                            <a href="single-news-1.html" class="img-opacity-hover">
+                                                {% thumbnail article.image "120x80" crop="center" as img %}
+                                                    <img src="{{ img.url }}" alt="{{ article.image_alt }}" class="img-fluid width-100 mb-10">
+                                                {% endthumbnail %}
+                                            </a>
+                                            <h3 class="title-medium-dark size-sm mb-none">
+                                                <a href="{% url 'blog:detail' article.id article.slug %}">{{ article.title }}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Articles Area End Here -->
+    <!-- Videos Area Start Here -->
+    <section class="section-space-default">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="topic-border color-cinnabar mb-30 width-100">
+                        <div class="topic-box-lg color-cinnabar">محبوب های هفته</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ne-carousel nav-control-top2 color-white2" data-loop="true" data-items="3" data-margin="10"
+                 data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false"
+                 data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true"
+                 data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true" data-r-x-medium-dots="false"
+                 data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="2"
+                 data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true"
+                 data-r-large-dots="false">
+                {% for article in most_visited_articles_in_last_week %}
+                <div class="img-overlay-70-c">
+                    <div class="mask-content-sm">
+                        <div class="topic-box-sm color-cod-gray mb-20">غذا</div>
+                        <h3 class="title-medium-light">
+                            <a href="{% url 'blog:detail' article.id article.slug %}">{{ article.title }}</a>
+                        </h3>
+                    </div>
+                    {% thumbnail article.image "450x250" crop="center" as img %}
+                        <img src="{{ img.url }}" alt="{{ article.image_alt }}" class="img-fluid width-100">
+                    {% endthumbnail %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Videos Area Start Here -->
+    <!-- Category Area Start Here -->
+    {% comment %}
+    <section class="bg-body section-space-less10">
+        <div class="container">
+            <div class="row tab-space5">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
+                        <img src="img/category/ctg10.jpg" alt="news" class="img-fluid width-100">
+                        <div class="content p-30-r">
+                            <div class="ctg-title-xs">غذا</div>
+                            <h3 class="title-regular-light size-lg">
+                                <a href="post-style-1.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</a>
+                            </h3>
+                            <div class="post-date-light d-block d-sm-none d-md-block">
+                                <ul>
+                                    <li>
+                                        <span>توسط</span>
+                                        <a href="single-news-1.html">وحید</a>
+                                    </li>
+                                    <li>
+                                                <span>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>22 اردیبهشت 1398
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endcomment %}
+    {% endblock %}

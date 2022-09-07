@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}درباره ما{% endblock %}
+{% block content %}
+<section class="bg-body section-space-less30">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12 mb-30">
+
+                <div class="topic-border color-cod-gray mb-30">
+                    <div class="topic-box-lg color-cod-gray">درباره ما</div>
+                </div>
+            </div>
+            <div class="news-details-layout3 mb-30">
+            {{ about.text|safe }}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

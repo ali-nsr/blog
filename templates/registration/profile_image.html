@@ -1,0 +1,27 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+پروفایل کاربری
+{% endblock %}
+
+{% block main %}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">تغییر تصویر پروفایل</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        {{ form.profile_image|as_crispy_field }}
+                    </div>
+                </div>
+                <button class="btn btn-success">ویرایش اطلاعات</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

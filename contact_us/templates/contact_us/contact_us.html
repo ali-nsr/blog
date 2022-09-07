@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}تماس با ما{% endblock %}
+{% block content %}
+<!-- Breadcrumb Area End Here -->
+<!-- Contact Page Area Start Here -->
+<section class="bg-body section-space-less30">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12 mb-30">
+                <div class="topic-border color-cod-gray mb-30">
+                    <div class="topic-box-lg color-cod-gray">اطلاعات تماس</div>
+                </div>
+                <ul class="address-info">
+                    <li>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>{{ site_settings.office_address }}
+                    </li>
+                    <li>
+                        <i class="fa fa-phone" aria-hidden="true"></i><span class="ltr_text">{{ site_settings.office_number }}</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>{{ site_settings.office_email }}
+                    </li>
+                    <li>
+                        <i class="fa fa-fax" aria-hidden="true"></i><span class="ltr_text">{{ site_settings.office_fax }}</span>
+                    </li>
+                </ul>
+                <div class="topic-border color-cod-gray mb-30">
+                    <div class="topic-box-lg color-cod-gray">با ما در ارتباط باشید</div>
+                </div>
+                <form id="contact-form" class="contact-form" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ contact_form.full_name }}
+                                    {% for error in contact_form.full_name.errors %}
+                                    <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ contact_form.email }}
+                                    {% for error in contact_form.email.errors %}
+                                    <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {{ contact_form.subject }}
+                                    {% for error in contact_form.subject.errors %}
+                                    <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {{ contact_form.text }}
+                                    {% for error in contact_form.text.errors %}
+                                    <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <input type="submit" name="" value="ارسال" class="btn btn-primary">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-sm-12">
+                                <div class="form-response"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- Contact Page Area End Here -->
+<!-- Footer Area Start Here -->
+{% endblock %}

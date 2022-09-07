@@ -1,0 +1,26 @@
+<nav id="dropdown">
+    <ul>
+        <li>
+            <a href="{% url 'signalsafar:home' %}">خانه</a>
+        </li>
+        <li>
+            <a href="{% url 'blog:article_list' %}">بلاگ</a>
+        </li>
+        {% for cat in category %}
+            {% if cat.parent == None %}
+                <li class="nav-item">
+                    <a href="{% url 'blog:category_list' cat.slug %}">{{cat.title}}</a>
+                    {% if cat.children.all %}
+                    {% include 'partials/category_loop.html' %}
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li>
+            <a href="{% url 'contact_us:contact_us' %}">تماس با ما</a>
+        </li>
+        <li>
+            <a href="{% url 'contact_us:about_us' %}">درباره ما</a>
+        </li>
+    </ul>
+</nav>                 

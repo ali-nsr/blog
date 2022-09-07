@@ -1,0 +1,25 @@
+{% load thumbnail %}
+<div class="sidebar-box">
+    <div class="topic-border color-cod-gray mb-5">
+        <div class="topic-box-lg color-cod-gray">اخبار جدید</div>
+    </div>
+    <div class="row">
+        {% for news in last_news %}
+        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+            <div class="mt-25 position-relative">
+                <div class="topic-box-top-xs">
+                    <div class="topic-box-sm color-cod-gray mb-20">{{ news.category.last }}</div>
+                </div>
+                <a href="{{ news.get_absolute_url }}">
+                    {% thumbnail news.image "150x100" crop="center top" as img %}
+                        <img src="{{ img.url }}" alt="{{ news.image_alt }}" class="img-fluid m-auto width-100 img-opacity-hover mb-10 display-block">
+                    {% endthumbnail %}
+                </a>
+                <h3 class="title-medium-dark size-md mb-none">
+                    <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                </h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

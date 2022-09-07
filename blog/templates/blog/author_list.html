@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}نویسنده | {{ author.get_full_name }}{% endblock %}
+{% block content %}
+<!-- Breadcrumb Area Start Here -->
+<section class="breadcrumbs-area" style="background-image: url('img/banner/breadcrumbs-banner.jpg');">
+    <div class="container">
+        <div class="breadcrumbs-content">
+            <ul>
+
+                <li>
+                    <a href="index.html">نویسنده</a> -
+                </li>
+                <li>{{ author.get_full_name }}</li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End Here -->
+<!-- Post Style 3 Page Area Start Here -->
+<section class="bg-body section-space-less30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                {% for article in page_obj %}
+                <div class="position-relative mb-50-r">
+                    <a class="img-opacity-hover mb-30" href="{{ article.get_absolute_url }}">
+                        {% thumbnail article.image "450x250" crop="center" as img %}
+                            <img src="{{ img.url }}" alt="{{ article.image_alt }}" class="img-fluid width-100">
+                        {% endthumbnail %}
+                    </a>
+                    <div class="topic-box-top-lg">
+                        <div class="topic-box-sm color-cod-gray mb-20">{{ article.category.active.last }}</div>
+                    </div>
+                    <div class="post-date-dark">
+                        <ul>
+                            <li>
+                                <span>توسط</span>
+                                <a href="{% url 'blog:author' article.author.username %}">{{ article.author.get_full_name }}</a>
+                            </li>
+                            <li>
+                                <span>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>{{ article.jpublish }}
+                            </li>
+                        </ul>
+                    </div>
+                    <h3 class="title-medium-dark size-c26">
+                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    </h3>
+                    <a href="{{ article.get_absolute_url }}" class="btn-ftf-dtp-52">بیشتر بخوانید</a>
+                </div>
+                {% endfor %}
+                <div class="row mb-30">
+                    <div class="col-sm-6 col-12">
+                        <div class="pagination-btn-wrapper text-center--xs mb15--xs">
+                            <ul>
+                                {% if page_obj.has_previous %}
+                                <li>
+                                    <a href="?page={{ page_obj.previous_page_number }}">قبل</a>
+                                </li>
+                                {% endif %}
+
+                                {% for page in paginator.page_range %}
+
+                                {% if page == page_obj.number %}
+                                <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+                                {% else %}
+                                <li><a href="?page={{ page }}">{{ page }}</a></li>
+                                {% endif %}
+
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                <li>
+                                    <a href="?page={{ page_obj.next_page_number }}">بعد</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div class="pagination-result text-left pt-10 text-center--xs">
+                            {% for page in paginator.page_range %}
+
+                            {% if page == page_obj.number %}
+                            <p class="mb-none">صفحه {{ page }}</p>
+                            {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Post Style 3 Page Area End Here -->
+<!-- Footer Area Start Here -->
+<!-- Footer Area End Here -->
+<!-- Modal Start-->
+{% endblock %}

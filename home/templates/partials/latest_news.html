@@ -1,0 +1,6 @@
+{% load base_tags %}
+{% for news in last_news %}
+<li>
+    <a href="{{ news.get_absolute_url|truncatewords:20|safe }}">{{ news.title }}</a>
+</li>
+{% endfor %}
